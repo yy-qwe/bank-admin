@@ -10,7 +10,7 @@ const name = pkg.name || 'bank-admin' //包名
 const port = 9528 //开发端口
 
 module.exports = {
-    publicPath: '/',
+    publicPath: './',
     outputDir: 'dist',
     assetsDir: 'static',
     productionSourceMap: false,
@@ -40,6 +40,9 @@ module.exports = {
         }
     },
     chainWebpack(config) {
+        config.plugins.delete('preload') // 不然会在index.html引runtime.js,造成404
+        config.plugins.delete('prefetch') // TODO: need test
+
         config.module
             .rule('vue')
             .use('vue-loader')
