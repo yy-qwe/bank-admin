@@ -10,7 +10,9 @@ const name = pkg.name || 'bank-admin' //包名
 const port = 9528 //开发端口
 
 module.exports = {
-    publicPath: './',
+    publicPath: process.env.NODE_ENV === 'production'
+        ? '/bank-admin/'
+        : './',
     outputDir: 'dist',
     assetsDir: 'static',
     productionSourceMap: false,
